@@ -3,8 +3,8 @@ package com.toliveira.shopbuddy
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.ListFragment
 import com.toliveira.shopbuddy.databinding.ActivityMainBinding
+import com.toliveira.shopbuddy.fragments.list.ListFragment
 import com.toliveira.shopbuddy.fragments.shopping.ShoppingFragment
 import com.toliveira.shopbuddy.fragments.spending.SpendingFragment
 
@@ -26,6 +26,8 @@ class MainActivity : AppCompatActivity() {
              }
              false
          }
+
+        binding.bottomNavigation.selectedItemId = R.id.navigation_list
 
 
     }
