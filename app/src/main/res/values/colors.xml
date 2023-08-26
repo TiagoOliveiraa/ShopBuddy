@@ -2,7 +2,6 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="first_blue">#cfd9df</color>
-    <color name="second_blue">#e2ebf0</color>
-    <color name="middle_blue">#D41C5C4D</color>
+    <color name="first_gradient">#35CDED</color>
+    <color name="last_gradient">#284850</color>
 </resources>

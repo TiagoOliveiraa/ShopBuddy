@@ -4,13 +4,10 @@
     <item>
         <shape>
             <gradient
-                android:type="radial"
-                android:centerX="50%"
-                android:centerY="50%"
-                android:startColor="#EDF8FF"
-                android:centerColor="#93D5FF"
-                android:endColor="#EDF8FF"
-                android:gradientRadius="100%"
+                android:type="linear"
+                android:startColor="@color/first_gradient"
+                android:endColor="@color/last_gradient"
+                android:angle="-90"
                 />
         </shape>
 
