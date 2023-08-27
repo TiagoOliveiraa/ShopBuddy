@@ -1,4 +1,4 @@
-package com.toliveira.shopbuddy.fragments.shopping
+package com.toliveira.shopbuddy.view.fragments.shopping
 
 import android.os.Bundle
 import android.view.LayoutInflater

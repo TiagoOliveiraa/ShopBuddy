@@ -1,4 +1,4 @@
-package com.toliveira.shopbuddy.fragments.list
+package com.toliveira.shopbuddy.view.fragments.list
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
