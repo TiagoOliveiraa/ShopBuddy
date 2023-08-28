@@ -11,5 +11,5 @@ data class Product(
     val itemName: String,
     val itemQuantity: Int,
     val itemPrice: Float,
-    val storeId: Int
+    val storeId: Int?
 )

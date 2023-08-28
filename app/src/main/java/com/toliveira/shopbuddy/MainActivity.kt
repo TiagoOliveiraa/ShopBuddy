@@ -4,9 +4,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.toliveira.shopbuddy.databinding.ActivityMainBinding
-import com.toliveira.shopbuddy.view.fragments.list.ListFragment
-import com.toliveira.shopbuddy.view.fragments.shopping.ShoppingFragment
-import com.toliveira.shopbuddy.view.fragments.spending.SpendingFragment
+import com.toliveira.shopbuddy.view.list.ListFragment
+import com.toliveira.shopbuddy.view.shopping.ShoppingFragment
+import com.toliveira.shopbuddy.view.spending.SpendingFragment
 
 class MainActivity : AppCompatActivity() {
 

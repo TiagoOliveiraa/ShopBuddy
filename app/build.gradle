@@ -40,11 +40,22 @@ android {
 
 dependencies {
 
+    //Room Libraries
+
     var roomVersion = "2.4.1"
 
     implementation("androidx.room:room-runtime:$roomVersion")
     annotationProcessor("androidx.room:room-compiler:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
+
+    //Navigation Libraries
+
+    var nav_version = "2.6.0"
+
+    //noinspection GradleDependency
+    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    //noinspection GradleDependency
+    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
 
 
     implementation 'androidx.core:core-ktx:1.10.1'

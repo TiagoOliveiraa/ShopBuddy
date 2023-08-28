@@ -1,22 +1,22 @@
-package com.toliveira.shopbuddy.view.fragments.shopping
+package com.toliveira.shopbuddy.view.spending
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.toliveira.shopbuddy.databinding.FragmentShoppingBinding
+import com.toliveira.shopbuddy.databinding.FragmentSpendingBinding
 
-class ShoppingFragment : Fragment() {
+class SpendingFragment : Fragment() {
 
-    private lateinit var binding : FragmentShoppingBinding
+    private lateinit var binding: FragmentSpendingBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentShoppingBinding.inflate(inflater,container,false)
+        binding = FragmentSpendingBinding.inflate(inflater,container,false)
         return binding.root
     }
 }

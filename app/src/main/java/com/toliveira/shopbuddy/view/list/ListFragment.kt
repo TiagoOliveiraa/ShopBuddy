@@ -1,10 +1,12 @@
-package com.toliveira.shopbuddy.view.fragments.list
+package com.toliveira.shopbuddy.view.list
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import com.toliveira.shopbuddy.R
 import com.toliveira.shopbuddy.databinding.FragmentListBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -22,6 +24,12 @@ class ListFragment : Fragment() {
     ): View? {
 
         binding = FragmentListBinding.inflate(inflater,container,false)
+
+
+        binding.listButton.setOnClickListener {
+            findNavController().navigate(R.id.action_listFragment_to_addProduct)
+        }
+
         return binding.root
     }
 
