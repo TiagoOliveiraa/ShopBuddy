@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="#FFFBF1"
     tools:context=".view.list.ListFragment">
 
     <ImageView
         android:id="@+id/listImage"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="140dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/maria_lin_kim_8raued8zd_u_unsplash"
+        android:src="@drawable/glenn_carstens_peters_rlw_uc03gwc_unsplash"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -1,5 +1,6 @@
 package com.toliveira.shopbuddy.view.list
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -27,7 +28,8 @@ class ListFragment : Fragment() {
 
 
         binding.listButton.setOnClickListener {
-            findNavController().navigate(R.id.action_listFragment_to_addProduct)
+            var intent = Intent(context,AddProductActivity::class.java)
+            startActivity(intent)
         }
 
         return binding.root

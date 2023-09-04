@@ -5,7 +5,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.toliveira.shopbuddy.data.ShopDatabase
-import com.toliveira.shopbuddy.data.product.ProductDao
 import com.toliveira.shopbuddy.data.product.ProductRepository
 import com.toliveira.shopbuddy.model.Product
 import kotlinx.coroutines.Dispatchers

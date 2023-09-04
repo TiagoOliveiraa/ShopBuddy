@@ -11,7 +11,7 @@ import com.toliveira.shopbuddy.model.Product
 interface ProductDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addProduct(product: Product)
+    fun addProduct(product: Product)
 
     @Query("SELECT * FROM product_table")
     fun getAllProducts() : LiveData<List<Product>>

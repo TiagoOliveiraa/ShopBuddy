@@ -1,5 +1,6 @@
 package com.toliveira.shopbuddy.view.shopping
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,18 @@ class ShoppingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentShoppingBinding.inflate(inflater,container,false)
+
+
+
+        binding.addStoreButton.setOnClickListener{
+            val intent = Intent(context,AddStore::class.java)
+            startActivity(intent)
+        }
+
+
+
+
+
         return binding.root
     }
 }

@@ -18,10 +18,15 @@ interface StoreDao {
     fun getAllStores() : LiveData<List<Store>>
 
     @Insert (onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addProduct(product: Product)
+    fun addStore(store:Store)
+
+    @Insert (onConflict = OnConflictStrategy.REPLACE)
+    fun addProduct(product: Product)
 
     @Transaction
     @Query("SELECT * FROM store_table WHERE storeName = :storeName")
-    suspend fun getStoreWithProducts(storeName: String): List<StoreWithProducts>
+    fun getStoreWithProducts(storeName: String): List<StoreWithProducts>
+
+
 
 }

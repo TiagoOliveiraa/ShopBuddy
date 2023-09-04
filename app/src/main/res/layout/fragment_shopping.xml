@@ -1,94 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.list.ListFragment"
-    android:background="@drawable/gradient_background"
-    >
+    android:background="#FFFBF1"
+    tools:context=".view.list.ListFragment">
+
+    <ImageView
+        android:id="@+id/shoppingTopImage"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/maria_lin_kim_8raued8zd_u_unsplash"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/shoppingTitleView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/concert_one"
-        android:text="@string/shopping_title"
+        android:fontFamily="@font/open_sans"
+        android:background="#79FFFFFF"
         android:padding="8dp"
-        android:textSize="25sp"
-        android:textColor="@color/white"
+        android:text="@string/shopping_title"
         android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="45sp"
+        app:layout_constraintBottom_toTopOf="@id/recycler_list"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/recycler_list"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        tools:listitem="@layout/shopping_item_row"
+        android:layout_marginBottom="96dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/shoppingTitleView"
-        android:layout_marginBottom="96dp"/>
-    
+        app:layout_constraintTop_toBottomOf="@id/shoppingTopImage"
+        tools:listitem="@layout/shopping_item_row" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="150dp"
         android:layout_height="30dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/storeSpinner"
-        android:background="@drawable/row_background"
         android:layout_marginStart="24dp"
         android:layout_marginBottom="12dp"
-        >
+        android:background="@drawable/row_background"
+        app:layout_constraintBottom_toTopOf="@id/storeSpinner"
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/totalText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginLeft="12dp"
             android:text=""
-            tools:text="45,30"
             android:textAlignment="center"
             android:textSize="20sp"
-            android:layout_marginLeft="12dp"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="45,30" />
 
         <TextView
             android:id="@+id/totalEuro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="12dp"
             android:text="@string/Euro"
             android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginRight="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
     <Spinner
         android:id="@+id/storeSpinner"
         android:layout_width="150dp"
         android:layout_height="30dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginStart="24dp"
         android:layout_marginBottom="12dp"
-        android:background="@drawable/row_background"/>
+        android:background="@drawable/row_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addStoreButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         android:layout_marginRight="12dp"
         android:layout_marginBottom="12dp"
-        android:src="@drawable/baseline_add_24" />
+        android:src="@drawable/baseline_add_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
