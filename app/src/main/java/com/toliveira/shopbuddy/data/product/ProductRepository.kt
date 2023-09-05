@@ -11,6 +11,14 @@ data class ProductRepository(private val productDao: ProductDao) {
         productDao.addProduct(product)
     }
 
+    fun updateProduct(product: Product){
+        productDao.updateProduct(product)
+    }
+
+    fun deleteProduct(product: Product){
+        productDao.deleteProduct(product)
+    }
+
 }
 
 

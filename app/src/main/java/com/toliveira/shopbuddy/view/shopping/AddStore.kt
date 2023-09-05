@@ -46,7 +46,7 @@ class AddStore : AppCompatActivity() {
         if (isFieldsEmpty()){
             var storeName = binding.textInputTextStore.text.toString()
 
-            var store = Store(1, storeName,0F)
+            var store = Store(0, storeName,0F)
             mStoreViewModel.addStore(store)
 
 

@@ -41,7 +41,7 @@ class AddProductActivity : AppCompatActivity() {
 
         if (isFieldsEmpty()){
             productName = binding.productAddNameText.text.toString()
-            var product = Product(1,productName,0,0F,null)
+            var product = Product(0,productName,0,0F,null)
             mProductViewModel.addProduct(product)
             Toast.makeText(this, "Product successfully added to list!", Toast.LENGTH_LONG).show()
             finish()
