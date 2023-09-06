@@ -14,3 +14,9 @@ class Store(
     val storeName: String,
     val storeSpending: Float
 ) : Parcelable
+
+{
+    override fun toString(): String {
+        return this.storeName
+    }
+}

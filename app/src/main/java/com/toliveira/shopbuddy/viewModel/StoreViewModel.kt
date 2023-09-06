@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 
 class StoreViewModel(application: Application) : AndroidViewModel(application){
 
-    private val getAllStores: LiveData<List<Store>>
+    val getAllStores: LiveData<List<Store>>
     private val repository: StoreRepository
 
     init{
