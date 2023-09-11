@@ -23,9 +23,9 @@ interface StoreDao {
     @Insert (onConflict = OnConflictStrategy.REPLACE)
     fun addProduct(product: Product)
 
-    @Transaction
     @Query("SELECT * FROM store_table WHERE storeName = :storeName")
-    fun getStoreWithProducts(storeName: String): List<StoreWithProducts>
+    fun getStoreInfo(storeName: String): LiveData<Store>
+
 
 
 

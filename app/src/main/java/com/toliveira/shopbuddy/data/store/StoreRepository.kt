@@ -8,12 +8,8 @@ data class StoreRepository(private val storeDao: StoreDao){
     val getAllStores: LiveData<List<Store>> = storeDao.getAllStores()
 
 
-    fun addProduct(product: Product){
-        storeDao.addProduct(product)
-    }
-
-    fun getStoreWithProducts(storeName: String){
-        storeDao.getStoreWithProducts(storeName)
+    fun getStoreInfo(storeName : String) : LiveData<Store>{
+       return storeDao.getStoreInfo(storeName)
     }
 
     fun addStore(store: Store){
