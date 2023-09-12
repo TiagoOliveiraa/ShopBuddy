@@ -1,21 +1,29 @@
 package com.toliveira.shopbuddy.view.shopping
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.toliveira.shopbuddy.R
 import com.toliveira.shopbuddy.model.Product
+import com.toliveira.shopbuddy.model.Store
 import com.toliveira.shopbuddy.view.list.ListAdapter
+import com.toliveira.shopbuddy.viewModel.ProductViewModel
 
-class ShoppingAdapter :
+class ShoppingAdapter(context: Context?, currentStore: Store? = null, mProductViewModel: ProductViewModel) :
     RecyclerView.Adapter<com.toliveira.shopbuddy.view.shopping.ShoppingAdapter.MyViewHolder>() {
 
 
     private var productList = emptyList<Product>()
+    private var currentStore = currentStore
+    private var context = context
+    private var mProductViewModel = mProductViewModel
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){}
 
@@ -32,6 +40,26 @@ class ShoppingAdapter :
     override fun onBindViewHolder(holder: ShoppingAdapter.MyViewHolder, position: Int) {
         val currentItem = productList[position]
         holder.itemView.findViewById<TextView>(R.id.item_shopping).text = currentItem.productName
+
+        holder.itemView.findViewById<ImageView>(R.id.item_delete_shopping).setOnClickListener {
+
+            if(currentStore != null){
+                var updatedProduct = Product(currentItem.productId,
+                currentItem.productName,
+                currentItem.productQuantity,
+                currentItem.productPrice,
+                currentStore!!.storeId)
+
+
+                mProductViewModel.updateProduct(updatedProduct)
+            }
+            else{
+                Toast.makeText(context, "You need to choose a store from the options below..", Toast.LENGTH_SHORT).show()
+            }
+
+        }
+
+
     }
 
     override fun getItemCount(): Int {

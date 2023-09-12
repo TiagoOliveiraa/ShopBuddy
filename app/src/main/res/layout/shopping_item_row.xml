@@ -26,12 +26,12 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/item_delete_list"
+            app:layout_constraintRight_toLeftOf="@id/item_delete_shopping"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="This is a test" />
 
         <ImageView
-            android:id="@+id/item_delete_list"
+            android:id="@+id/item_delete_shopping"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/baseline_shopping_cart_24"

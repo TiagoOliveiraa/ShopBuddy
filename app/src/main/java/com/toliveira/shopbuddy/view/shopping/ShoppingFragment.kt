@@ -9,6 +9,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.LinearLayout
 import android.widget.ListAdapter
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -45,9 +46,12 @@ class ShoppingFragment : Fragment() {
             ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, ArrayList<Store>())
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
-        val shoppingAdapter = ShoppingAdapter()
+        val shoppingAdapter = ShoppingAdapter(context,null,mProductViewModel)
         binding.recyclerList.adapter = shoppingAdapter
         binding.recyclerList.layoutManager = LinearLayoutManager(requireContext())
+        mProductViewModel.getAllProducts.observe(viewLifecycleOwner, Observer { productList ->
+            shoppingAdapter.setData(productList)
+        })
 
 
 
@@ -62,6 +66,7 @@ class ShoppingFragment : Fragment() {
                 }
             }
         })
+
 
         binding.storeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 
@@ -85,13 +90,21 @@ class ShoppingFragment : Fragment() {
                             }
 
                         })
-                    shoppingAdapter.setData(productFiltered)
-
+                    val newAdapter = ShoppingAdapter(context,currentStore,mProductViewModel)
+                    binding.recyclerList.adapter = newAdapter
+                    binding.recyclerList.layoutManager = LinearLayoutManager(requireContext())
+                    newAdapter.setData(productFiltered)
+                    Toast.makeText(context, "${binding.storeSpinner.selectedItem.toString()}", Toast.LENGTH_SHORT).show()
                 }
             }
 
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
+                mProductViewModel.getAllProducts.observe(
+                    viewLifecycleOwner,
+                    Observer { productList ->
+                        shoppingAdapter.setData(productList)
+                    })
 
             }
 
@@ -99,6 +112,9 @@ class ShoppingFragment : Fragment() {
         }
 
         binding.storeSpinner.adapter = spinnerAdapter
+        if (!binding.storeSpinner.isSelected) {
+
+        }
 
 
 
