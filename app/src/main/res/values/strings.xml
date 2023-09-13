@@ -9,4 +9,6 @@
     <string name="list_title">Products List</string>
     <string name="shopping_title">Shopping</string>
     <string name="spending_title">Spending</string>
+    <string name="price">Price</string>
+    <string name="Quantity_Title">Quantity</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.toliveira.shopbuddy.view.shopping
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,17 +42,13 @@ class ShoppingAdapter(context: Context?, currentStore: Store? = null, mProductVi
         val currentItem = productList[position]
         holder.itemView.findViewById<TextView>(R.id.item_shopping).text = currentItem.productName
 
-        holder.itemView.findViewById<ImageView>(R.id.item_delete_shopping).setOnClickListener {
+        holder.itemView.findViewById<ImageView>(R.id.item_delete_shopping).setOnClickListener {v->
 
             if(currentStore != null){
-                var updatedProduct = Product(currentItem.productId,
-                currentItem.productName,
-                currentItem.productQuantity,
-                currentItem.productPrice,
-                currentStore!!.storeId)
-
-
-                mProductViewModel.updateProduct(updatedProduct)
+                val intent = Intent(v.context, BuyProduct::class.java)
+                intent.putExtra("product",currentItem)
+                intent.putExtra("store",currentStore)
+                v.context.startActivity(intent)
             }
             else{
                 Toast.makeText(context, "You need to choose a store from the options below..", Toast.LENGTH_SHORT).show()
