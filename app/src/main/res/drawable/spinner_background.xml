@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <layer-list>
+            <item>
+                <shape android:shape="rectangle">
+                    <stroke android:width="1dp" android:color="@color/shopping_row_background" />
+                    <corners android:radius="10dp" />
+                    <padding android:right="12dp"
+                        android:left="12dp"/>
+                </shape>
+            </item>
+            <item android:drawable="@drawable/baseline_keyboard_arrow_up_24" android:gravity="end">
+                <color android:color="@color/Button_Color"/>
+            </item>
+        </layer-list>
+    </item>
+</selector>

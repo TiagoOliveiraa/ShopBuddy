@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.toliveira.shopbuddy.R
 import com.toliveira.shopbuddy.databinding.FragmentShoppingBinding
 import com.toliveira.shopbuddy.model.Product
 import com.toliveira.shopbuddy.model.Store
@@ -25,6 +26,9 @@ class ShoppingFragment : Fragment() {
     private lateinit var binding: FragmentShoppingBinding
     private lateinit var mStoreViewModel: StoreViewModel
     private lateinit var mProductViewModel: ProductViewModel
+    private var productFiltered = mutableListOf<Product>()
+    private lateinit var shoppingAdapter: ShoppingAdapter
+    private var storeCost = 0F
     var storeList = mutableListOf<Store>()
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,18 +47,15 @@ class ShoppingFragment : Fragment() {
         }
 
         var spinnerAdapter =
-            ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, ArrayList<Store>())
+            ArrayAdapter(requireContext(), R.layout.custom_spinner, ArrayList<Store>())
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
-        val shoppingAdapter = ShoppingAdapter(context,null,mProductViewModel)
+        shoppingAdapter = ShoppingAdapter(context, null, mProductViewModel)
         binding.recyclerList.adapter = shoppingAdapter
         binding.recyclerList.layoutManager = LinearLayoutManager(requireContext())
         mProductViewModel.getAllProducts.observe(viewLifecycleOwner, Observer { productList ->
             shoppingAdapter.setData(productList)
         })
-
-
-
 
 
         mStoreViewModel.getAllStores.observe(viewLifecycleOwner, Observer { storeName ->
@@ -76,25 +77,28 @@ class ShoppingFragment : Fragment() {
                 val currentStoreName: String? = binding.storeSpinner.selectedItem.toString()
                 if (currentStoreName != null) {
                     val currentStore = storeList.find { it.storeName == currentStoreName }
+                    val newAdapter = ShoppingAdapter(context, currentStore, mProductViewModel)
 
-                    var productFiltered = mutableListOf<Product>()
                     mProductViewModel.getAllProducts.observe(
                         viewLifecycleOwner,
                         Observer { productList ->
+                            storeCost = 0F
                             productList.forEach {
                                 if (it.productStoreId == null || it.productStoreId == currentStore?.storeId) {
                                     if (it !in productFiltered) {
+                                        if (it.productStoreId == currentStore?.storeId) {
+                                            storeCost += it.productPrice * it.productQuantity
+                                        }
                                         productFiltered.add(it)
                                     }
                                 }
                             }
 
                         })
-                    val newAdapter = ShoppingAdapter(context,currentStore,mProductViewModel)
+                    binding.totalText.text = storeCost.toString()
                     binding.recyclerList.adapter = newAdapter
                     binding.recyclerList.layoutManager = LinearLayoutManager(requireContext())
                     newAdapter.setData(productFiltered)
-                    Toast.makeText(context, "${binding.storeSpinner.selectedItem.toString()}", Toast.LENGTH_SHORT).show()
                 }
             }
 
@@ -112,9 +116,6 @@ class ShoppingFragment : Fragment() {
         }
 
         binding.storeSpinner.adapter = spinnerAdapter
-        if (!binding.storeSpinner.isSelected) {
-
-        }
 
 
 
@@ -123,4 +124,11 @@ class ShoppingFragment : Fragment() {
 
         return binding.root
     }
+
+
+    override fun onResume() {
+
+        super.onResume()
+    }
+
 }

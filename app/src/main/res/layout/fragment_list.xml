@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#79FFFFFF"
-        android:fontFamily="@font/open_sans"
+        android:fontFamily="@font/roboto_light"
         android:padding="8dp"
         android:text="@string/list_title"
         android:textAlignment="center"
@@ -38,7 +38,7 @@
         android:background="@drawable/app_background"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="24dp"
-        android:padding="12dp">
+        android:padding="16dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_list"
@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="12dp"
         android:layout_marginBottom="12dp"
-        android:backgroundTint="#8C9EFF"
+        android:backgroundTint="@color/Button_Color"
         android:src="@drawable/baseline_add_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
