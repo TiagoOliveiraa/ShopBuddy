@@ -17,7 +17,12 @@ import com.toliveira.shopbuddy.model.Store
 import com.toliveira.shopbuddy.view.list.ListAdapter
 import com.toliveira.shopbuddy.viewModel.ProductViewModel
 
-class ShoppingAdapter(context: Context?, currentStore: Store? = null, mProductViewModel: ProductViewModel) :
+@Suppress("KotlinConstantConditions")
+class ShoppingAdapter(
+    context: Context?,
+    currentStore: Store? = null,
+    mProductViewModel: ProductViewModel
+) :
     RecyclerView.Adapter<com.toliveira.shopbuddy.view.shopping.ShoppingAdapter.MyViewHolder>() {
 
 
@@ -26,7 +31,7 @@ class ShoppingAdapter(context: Context?, currentStore: Store? = null, mProductVi
     private var context = context
     private var mProductViewModel = mProductViewModel
 
-    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){}
+    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {}
 
 
     override fun onCreateViewHolder(
@@ -42,16 +47,27 @@ class ShoppingAdapter(context: Context?, currentStore: Store? = null, mProductVi
         val currentItem = productList[position]
         holder.itemView.findViewById<TextView>(R.id.item_shopping).text = currentItem.productName
 
-        holder.itemView.findViewById<ImageView>(R.id.item_delete_shopping).setOnClickListener {v->
+        holder.itemView.findViewById<ImageView>(R.id.item_delete_shopping).setOnClickListener { v ->
 
-            if(currentStore != null){
-                val intent = Intent(v.context, BuyProduct::class.java)
-                intent.putExtra("product",currentItem)
-                intent.putExtra("store",currentStore)
-                v.context.startActivity(intent)
-            }
-            else{
-                Toast.makeText(context, "You need to choose a store from the options below..", Toast.LENGTH_SHORT).show()
+            if (currentStore != null) {
+                if (currentStore!!.storeId != -1) {
+                    val intent = Intent(v.context, BuyProduct::class.java)
+                    intent.putExtra("product", currentItem)
+                    intent.putExtra("store", currentStore)
+                    v.context.startActivity(intent)
+                } else {
+                    Toast.makeText(
+                        context,
+                        "You need to choose a store from the options below..",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            } else {
+                Toast.makeText(
+                    context,
+                    "You need to choose a store from the options below..",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
 
         }
@@ -63,7 +79,7 @@ class ShoppingAdapter(context: Context?, currentStore: Store? = null, mProductVi
         return productList.size
     }
 
-    fun setData(product: List<Product>){
+    fun setData(product: List<Product>) {
         productList = product
         notifyDataSetChanged()
     }

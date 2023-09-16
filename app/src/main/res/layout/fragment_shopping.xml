@@ -53,11 +53,12 @@
             tools:listitem="@layout/shopping_item_row" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="150dp"
+            android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_marginStart="24dp"
             android:layout_marginBottom="12dp"
-            android:background="@drawable/shopping_row_background"
+            app:layout_constraintWidth_percent="0.6"
+            android:background="@drawable/total_bar_background"
             app:layout_constraintBottom_toTopOf="@id/storeSpinner"
             app:layout_constraintStart_toStartOf="parent">
 
@@ -76,26 +77,15 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="45,30" />
 
-            <TextView
-                android:id="@+id/totalEuro"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="12dp"
-                android:text="@string/Euro"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-
-                app:layout_constraintStart_toEndOf="@id/totalText"
-                app:layout_constraintTop_toTopOf="parent" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         <Spinner
             android:id="@+id/storeSpinner"
-            android:layout_width="150dp"
+            android:layout_width="0dp"
             android:layout_height="30dp"
+            app:layout_constraintWidth_percent="0.6"
             android:layout_marginStart="24dp"
             android:layout_marginBottom="12dp"
             android:background="@drawable/spinner_background"
