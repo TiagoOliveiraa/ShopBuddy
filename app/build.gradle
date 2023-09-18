@@ -68,6 +68,7 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
     //noinspection GradleDependency
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+    implementation("ir.mahozad.android:pie-chart:0.7.0")
 
 
     implementation 'androidx.core:core-ktx:1.10.1'
