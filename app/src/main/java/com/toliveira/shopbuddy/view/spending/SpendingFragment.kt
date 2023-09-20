@@ -1,6 +1,7 @@
 package com.toliveira.shopbuddy.view.spending
 
 import android.graphics.Color
+import android.graphics.Color.rgb
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -23,7 +24,7 @@ class SpendingFragment : Fragment() {
 
         binding.pieChart.apply {
             slices = listOf(
-                PieChart.Slice(0.2f, Color.BLUE, Color.BLUE, "test"),
+                PieChart.Slice(0.2f, rgb(255,255,150)),
                 PieChart.Slice(0.5f, Color.GREEN),
                 PieChart.Slice(0.3f, Color.YELLOW)
             )
