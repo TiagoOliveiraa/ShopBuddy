@@ -35,6 +35,12 @@ class StoreViewModel(application: Application) : AndroidViewModel(application) {
         return store
     }
 
+    fun updateStore(store: Store){
+        viewModelScope.launch (Dispatchers.IO){
+            repository.updateStore(store)
+        }
+    }
+
     fun addStore(store: Store) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.addStore(store)

@@ -7,12 +7,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStoreOwner
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.toliveira.shopbuddy.databinding.FragmentSpendingBinding
+import com.toliveira.shopbuddy.viewModel.StoreViewModel
 import ir.mahozad.android.PieChart
 
 class SpendingFragment : Fragment() {
 
     private lateinit var binding: FragmentSpendingBinding
+    private lateinit var mStoreViewModel: StoreViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -20,6 +26,16 @@ class SpendingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSpendingBinding.inflate(inflater, container, false)
+        mStoreViewModel = ViewModelProvider(this)[StoreViewModel::class.java]
+
+        val adapter = SpendingAdapter()
+        binding.SpendingContainer.adapter = adapter
+        binding.SpendingContainer.layoutManager = LinearLayoutManager(context)
+
+        mStoreViewModel.getAllStores.observe(viewLifecycleOwner,Observer{storeList ->
+            adapter.setData(storeList)
+        })
+
 
 
         binding.pieChart.apply {
@@ -33,6 +49,8 @@ class SpendingFragment : Fragment() {
             gradientType = PieChart.GradientType.SWEEP
             holeRatio = 0f
         }
+
+
 
 
 

@@ -11,12 +11,14 @@ import com.toliveira.shopbuddy.databinding.ActivityBuyProductBinding
 import com.toliveira.shopbuddy.model.Product
 import com.toliveira.shopbuddy.model.Store
 import com.toliveira.shopbuddy.viewModel.ProductViewModel
+import com.toliveira.shopbuddy.viewModel.StoreViewModel
 
 class BuyProduct : AppCompatActivity() {
 
 
     lateinit var binding: ActivityBuyProductBinding
     lateinit var mProductViewModel: ProductViewModel
+    lateinit var mStoreViewModel: StoreViewModel
     private val product by lazy {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             intent.getParcelableExtra("product", Product::class.java)
@@ -36,6 +38,7 @@ class BuyProduct : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityBuyProductBinding.inflate(layoutInflater)
         mProductViewModel = ViewModelProvider(this)[ProductViewModel::class.java]
+        mStoreViewModel = ViewModelProvider(this)[StoreViewModel::class.java]
 
         binding.addToCarButton.setOnClickListener {
             addProductToCar()
@@ -49,6 +52,11 @@ class BuyProduct : AppCompatActivity() {
     private fun addProductToCar() {
 
         var price: Float = (binding.priceEditText.text.toString().toFloat())
+        val currentStoreSpending = store!!.storeSpending
+        val previousProductQuantity = product!!.productQuantity
+        val newProductQuantity = binding.quantitySlide.value.toInt()
+        var productAddedNum = newProductQuantity - previousProductQuantity
+        var newStoreSpending: Float? = 0.0f
 
         if (!isEmpty(binding.priceEditText.text)) {
             var udpatedProduct = Product(
@@ -58,8 +66,26 @@ class BuyProduct : AppCompatActivity() {
                 price,
                 store!!.storeId
             )
+
+            newStoreSpending = if (productAddedNum > 0) {
+                currentStoreSpending + (productAddedNum * price)
+            } else
+                if (productAddedNum < 0) {
+                    currentStoreSpending - (productAddedNum * price)
+                } else {
+                    currentStoreSpending
+                }
+
+            var updatedStore = Store(store!!.storeId, store!!.storeName, newStoreSpending)
+            mStoreViewModel.updateStore(updatedStore)
+
+
             mProductViewModel.updateProduct(udpatedProduct)
-            Toast.makeText(this, "The product has been added to ${store!!.storeName}", Toast.LENGTH_SHORT)
+            Toast.makeText(
+                this,
+                "The product has been added to ${store!!.storeName}",
+                Toast.LENGTH_SHORT
+            )
                 .show()
             finish()
         } else {

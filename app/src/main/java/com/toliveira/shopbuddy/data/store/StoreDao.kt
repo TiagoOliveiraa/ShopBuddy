@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
+import androidx.room.Update
 import com.toliveira.shopbuddy.model.Product
 import com.toliveira.shopbuddy.model.Store
 import com.toliveira.shopbuddy.model.StoreWithProducts
@@ -26,6 +27,12 @@ interface StoreDao {
     @Query("SELECT * FROM store_table WHERE storeName = :storeName")
     fun getStoreInfo(storeName: String): LiveData<Store>
 
+    @Update
+    fun updateStore(store : Store)
+
+    @Transaction
+    @Query("SELECT * FROM store_table")
+    fun getStoreWithProducts() : List<StoreWithProducts>
 
 
 

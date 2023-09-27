@@ -19,17 +19,14 @@ import com.toliveira.shopbuddy.viewModel.ProductViewModel
 
 @Suppress("KotlinConstantConditions")
 class ShoppingAdapter(
-    context: Context?,
-    currentStore: Store? = null,
-    mProductViewModel: ProductViewModel
+    private var context: Context?,
+    private var currentStore: Store? = null,
+    private var mProductViewModel: ProductViewModel
 ) :
     RecyclerView.Adapter<com.toliveira.shopbuddy.view.shopping.ShoppingAdapter.MyViewHolder>() {
 
 
     private var productList = emptyList<Product>()
-    private var currentStore = currentStore
-    private var context = context
-    private var mProductViewModel = mProductViewModel
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {}
 

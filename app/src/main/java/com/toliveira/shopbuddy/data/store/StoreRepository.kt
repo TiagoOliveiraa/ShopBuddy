@@ -12,6 +12,10 @@ data class StoreRepository(private val storeDao: StoreDao){
        return storeDao.getStoreInfo(storeName)
     }
 
+    fun updateStore(store: Store){
+        storeDao.updateStore(store)
+    }
+
     fun addStore(store: Store){
         storeDao.addStore(store)
     }

@@ -8,7 +8,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 @Entity(tableName = "store_table")
-class Store(
+data class Store(
     @PrimaryKey(autoGenerate = true)
     val storeId: Int,
     val storeName: String,
