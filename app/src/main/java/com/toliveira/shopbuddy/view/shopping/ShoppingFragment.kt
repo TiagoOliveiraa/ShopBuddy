@@ -98,15 +98,15 @@ class ShoppingFragment : Fragment() {
                                     if (it !in productFiltered) {
                                         productFiltered.add(it)
                                     }
-                                    if (it.productStoreId == currentStore?.storeId) {
-                                        storeCost += it.productPrice * it.productQuantity
-                                    }
+//                                    if (it.productStoreId == currentStore?.storeId) {
+//                                        storeCost += it.productPrice * it.productQuantity
+//                                    }
                                 }
                             }
 
 
                         })
-                    binding.totalText.text = String.format("%.2f €", storeCost)
+                    binding.totalText.text = String.format("%.2f €", currentStore?.storeSpending)
                     binding.recyclerList.adapter = newAdapter
                     binding.recyclerList.layoutManager = LinearLayoutManager(requireContext())
                     newAdapter.setData(productFiltered)

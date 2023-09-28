@@ -1,17 +1,17 @@
 package com.toliveira.shopbuddy.view.shopping
 
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils.isEmpty
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.toliveira.shopbuddy.R
 import com.toliveira.shopbuddy.databinding.ActivityBuyProductBinding
 import com.toliveira.shopbuddy.model.Product
 import com.toliveira.shopbuddy.model.Store
 import com.toliveira.shopbuddy.viewModel.ProductViewModel
 import com.toliveira.shopbuddy.viewModel.StoreViewModel
+import kotlin.math.abs
 
 class BuyProduct : AppCompatActivity() {
 
@@ -40,6 +40,8 @@ class BuyProduct : AppCompatActivity() {
         mProductViewModel = ViewModelProvider(this)[ProductViewModel::class.java]
         mStoreViewModel = ViewModelProvider(this)[StoreViewModel::class.java]
 
+        binding.priceEditText.setText(product?.productPrice.toString())
+        binding.quantitySlide.value = product!!.productQuantity.toFloat()
         binding.addToCarButton.setOnClickListener {
             addProductToCar()
         }
@@ -71,7 +73,7 @@ class BuyProduct : AppCompatActivity() {
                 currentStoreSpending + (productAddedNum * price)
             } else
                 if (productAddedNum < 0) {
-                    currentStoreSpending - (productAddedNum * price)
+                    currentStoreSpending - (abs(productAddedNum) * price)
                 } else {
                     currentStoreSpending
                 }
