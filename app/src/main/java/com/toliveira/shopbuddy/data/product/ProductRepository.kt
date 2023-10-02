@@ -19,6 +19,14 @@ data class ProductRepository(private val productDao: ProductDao) {
         productDao.deleteProduct(product)
     }
 
+    fun deleteAllProducts(){
+        productDao.deleteAllProducts()
+    }
+
+    fun deletePurchasedProducts(){
+        productDao.deletePurchasedProducts()
+    }
+
 }
 
 

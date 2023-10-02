@@ -24,6 +24,12 @@ interface ProductDao {
     @Delete
     fun deleteProduct(product: Product)
 
+    @Query("DELETE FROM product_table")
+    fun deleteAllProducts()
+
+    @Query("DELETE FROM product_table WHERE productStoreId != null")
+    fun deletePurchasedProducts()
+
 
 
 

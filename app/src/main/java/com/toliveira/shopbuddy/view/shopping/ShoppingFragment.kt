@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -15,6 +16,8 @@ import com.toliveira.shopbuddy.R
 import com.toliveira.shopbuddy.databinding.FragmentShoppingBinding
 import com.toliveira.shopbuddy.model.Product
 import com.toliveira.shopbuddy.model.Store
+import com.toliveira.shopbuddy.view.list.AddProductActivity
+import com.toliveira.shopbuddy.view.spending.AddStore
 import com.toliveira.shopbuddy.viewModel.ProductViewModel
 import com.toliveira.shopbuddy.viewModel.StoreViewModel
 
@@ -40,8 +43,20 @@ class ShoppingFragment : Fragment() {
         mStoreViewModel = ViewModelProvider(this)[StoreViewModel::class.java]
         mProductViewModel = ViewModelProvider(this)[ProductViewModel::class.java]
 
-        binding.addStoreButton.setOnClickListener {
-            val intent = Intent(context, AddStore::class.java)
+
+
+
+
+
+
+
+        return binding.root
+    }
+
+
+    override fun onResume() {
+        binding.addProductButton.setOnClickListener {
+            val intent = Intent(context, AddProductActivity::class.java)
             startActivity(intent)
         }
         setSpinner()
@@ -54,10 +69,7 @@ class ShoppingFragment : Fragment() {
 
 
 
-
-
-
-        return binding.root
+        super.onResume()
     }
 
     private fun setSpinner() {
@@ -66,12 +78,17 @@ class ShoppingFragment : Fragment() {
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerAdapter.clear()
         spinnerAdapter.add(defaultStore)
+        var count = 0
 
         mStoreViewModel.getAllStores.observe(viewLifecycleOwner, Observer { storeName ->
+            storeList.clear()
             storeName.forEach {
-                spinnerAdapter.add(it)
-                if (it !in storeList) {
-                    storeList.add(it)
+                storeList.add(it)
+            }
+            if (storeList.size != count) {
+                storeList.forEach {
+                    spinnerAdapter.add(it)
+                    count++
                 }
             }
         })
@@ -98,9 +115,6 @@ class ShoppingFragment : Fragment() {
                                     if (it !in productFiltered) {
                                         productFiltered.add(it)
                                     }
-//                                    if (it.productStoreId == currentStore?.storeId) {
-//                                        storeCost += it.productPrice * it.productQuantity
-//                                    }
                                 }
                             }
 

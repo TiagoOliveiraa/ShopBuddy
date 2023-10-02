@@ -1,17 +1,13 @@
-package com.toliveira.shopbuddy.view.shopping
+package com.toliveira.shopbuddy.view.spending
 
 import android.os.Bundle
 import android.text.TextUtils.isEmpty
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.toliveira.shopbuddy.data.ShopDatabase
-import com.toliveira.shopbuddy.data.store.StoreRepository
 import com.toliveira.shopbuddy.databinding.ActivityAddStoreBinding
 import com.toliveira.shopbuddy.model.Store
 import com.toliveira.shopbuddy.viewModel.StoreViewModel
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 class AddStore : AppCompatActivity() {
 

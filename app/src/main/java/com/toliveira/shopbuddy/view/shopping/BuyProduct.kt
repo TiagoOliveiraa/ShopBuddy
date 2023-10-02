@@ -41,7 +41,9 @@ class BuyProduct : AppCompatActivity() {
         mStoreViewModel = ViewModelProvider(this)[StoreViewModel::class.java]
 
         binding.priceEditText.setText(product?.productPrice.toString())
-        binding.quantitySlide.value = product!!.productQuantity.toFloat()
+        if(product!!.productQuantity.toFloat() > 0) {
+            binding.quantitySlide.value = product!!.productQuantity.toFloat()
+        }
         binding.addToCarButton.setOnClickListener {
             addProductToCar()
         }
@@ -77,6 +79,10 @@ class BuyProduct : AppCompatActivity() {
                 } else {
                     currentStoreSpending
                 }
+
+            if(newStoreSpending < 0){
+                newStoreSpending = 0f
+            }
 
             var updatedStore = Store(store!!.storeId, store!!.storeName, newStoreSpending)
             mStoreViewModel.updateStore(updatedStore)

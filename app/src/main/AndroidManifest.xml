@@ -22,7 +22,7 @@
             android:name=".view.list.AddProductActivity"
             android:exported="false" />
         <activity
-            android:name=".view.shopping.AddStore"
+            android:name=".view.spending.AddStore"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

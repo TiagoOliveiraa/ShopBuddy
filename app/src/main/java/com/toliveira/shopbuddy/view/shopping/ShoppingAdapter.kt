@@ -2,6 +2,7 @@ package com.toliveira.shopbuddy.view.shopping
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,15 +44,28 @@ class ShoppingAdapter(
     override fun onBindViewHolder(holder: ShoppingAdapter.MyViewHolder, position: Int) {
         val currentItem = productList[position]
         holder.itemView.findViewById<TextView>(R.id.item_shopping).text = currentItem.productName
+        if (currentItem.productStoreId != null) {
+            holder.itemView.findViewById<TextView>(R.id.item_shopping).paintFlags =
+                Paint.STRIKE_THRU_TEXT_FLAG
+        }
 
-        holder.itemView.findViewById<ImageView>(R.id.item_delete_shopping).setOnClickListener { v ->
 
-            if (currentStore != null) {
-                if (currentStore!!.storeId != -1) {
-                    val intent = Intent(v.context, BuyProduct::class.java)
-                    intent.putExtra("product", currentItem)
-                    intent.putExtra("store", currentStore)
-                    v.context.startActivity(intent)
+        holder.itemView.findViewById<ImageView>(R.id.item_add_car).setOnClickListener { v ->
+
+            if (currentItem.productStoreId == null) {
+                if (currentStore != null) {
+                    if (currentStore!!.storeId != -1) {
+                        val intent = Intent(v.context, BuyProduct::class.java)
+                        intent.putExtra("product", currentItem)
+                        intent.putExtra("store", currentStore)
+                        v.context.startActivity(intent)
+                    } else {
+                        Toast.makeText(
+                            context,
+                            "You need to choose a store from the options below..",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 } else {
                     Toast.makeText(
                         context,
@@ -59,16 +73,13 @@ class ShoppingAdapter(
                         Toast.LENGTH_SHORT
                     ).show()
                 }
+
             } else {
-                Toast.makeText(
-                    context,
-                    "You need to choose a store from the options below..",
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(context, "This item has already been added", Toast.LENGTH_SHORT)
+                    .show()
             }
 
         }
-
 
     }
 
