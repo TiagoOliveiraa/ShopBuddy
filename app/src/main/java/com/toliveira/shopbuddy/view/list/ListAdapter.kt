@@ -15,9 +15,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.toliveira.shopbuddy.R
 import com.toliveira.shopbuddy.model.Product
 import com.toliveira.shopbuddy.viewModel.ProductViewModel
+import com.toliveira.shopbuddy.viewModel.StoreViewModel
 import kotlinx.coroutines.NonDisposableHandle.parent
 
-class ListAdapter(private val context: Context,private val mProductViewModel: ProductViewModel) :
+class ListAdapter(private val context: Context,private val mProductViewModel: ProductViewModel, private val mStoreViewModel: StoreViewModel) :
     RecyclerView.Adapter<com.toliveira.shopbuddy.view.list.ListAdapter.MyViewHolder>() {
 
     private var productList = emptyList<Product>()
@@ -47,6 +48,11 @@ class ListAdapter(private val context: Context,private val mProductViewModel: Pr
                 builder.setTitle("Delete Task")
                 builder.setMessage("Are you sure you want to delete this product from the list?")
                 builder.setPositiveButton("Yes"){_,_,->
+                    if(currentItem.productStoreId != null){
+                        var store = mStoreViewModel.getStore(currentItem.productStoreId)
+                        var newStoreSpending = store.storeSpending - (currentItem.productPrice * currentItem.productQuantity)
+                        mStoreViewModel.updateStoreSpending(currentItem.productStoreId,newStoreSpending)
+                    }
                     mProductViewModel.deleteProduct(currentItem)
                     Toast.makeText(context, "Product Successfully deleted!", Toast.LENGTH_SHORT).show()
                 }

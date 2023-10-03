@@ -20,5 +20,13 @@ data class StoreRepository(private val storeDao: StoreDao){
         storeDao.addStore(store)
     }
 
+    fun updateStoreSpending(storeId: Int, newValue: Float){
+        storeDao.updateStoreSpending(storeId,newValue)
+    }
+
+    fun getStore(Id: Int) : Store{
+        return storeDao.getStore(Id)
+    }
+
 
 }

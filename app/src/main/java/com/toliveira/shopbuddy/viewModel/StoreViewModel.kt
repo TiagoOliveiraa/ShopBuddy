@@ -47,5 +47,19 @@ class StoreViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun updateStoreSpending(storeId: Int, newValue: Float){
+        viewModelScope.launch (Dispatchers.IO){
+            repository.updateStoreSpending(storeId,newValue)
+        }
+    }
+
+    fun getStore(Id: Int) : Store{
+        lateinit var store : Store
+        viewModelScope.launch (Dispatchers.IO){
+            store = repository.getStore(Id)
+        }
+        return store
+    }
+
 
 }

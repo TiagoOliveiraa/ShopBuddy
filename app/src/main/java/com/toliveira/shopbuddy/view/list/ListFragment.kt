@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.toliveira.shopbuddy.databinding.FragmentListBinding
 import com.toliveira.shopbuddy.model.Product
 import com.toliveira.shopbuddy.viewModel.ProductViewModel
+import com.toliveira.shopbuddy.viewModel.StoreViewModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,6 +24,7 @@ class ListFragment : Fragment() {
 
     private lateinit var binding: FragmentListBinding
     private lateinit var mProductViewModel: ProductViewModel
+    private lateinit var mStoreViewModel: StoreViewModel
     private var productList = mutableListOf<Product>()
 
     override fun onCreateView(
@@ -31,9 +33,10 @@ class ListFragment : Fragment() {
     ): View? {
 
         binding = FragmentListBinding.inflate(inflater, container, false)
-        mProductViewModel = ViewModelProvider(this).get(ProductViewModel::class.java)
+        mProductViewModel = ViewModelProvider(this)[ProductViewModel::class.java]
+        mStoreViewModel = ViewModelProvider(this)[StoreViewModel::class.java]
 
-        val adapter = ListAdapter(requireContext(), mProductViewModel)
+        val adapter = ListAdapter(requireContext(), mProductViewModel, mStoreViewModel)
         binding.recyclerList.adapter = adapter
         binding.recyclerList.layoutManager = LinearLayoutManager(requireContext())
 
@@ -53,6 +56,13 @@ class ListFragment : Fragment() {
         }
 
 
+
+        setDeleteButton()
+
+        return binding.root
+    }
+
+    private fun setDeleteButton() {
         binding.deleteAllButton.setOnClickListener {
             var builder = AlertDialog.Builder(requireContext())
             builder.setTitle("Delete")
@@ -64,6 +74,15 @@ class ListFragment : Fragment() {
                 builderAll.setMessage("Are you sure you want to delete all Products?\nYou can't revert your action!")
                 builderAll.setNegativeButton("Cancel") { _, _ -> }
                 builderAll.setPositiveButton("Delete") { _, _ ->
+                    mProductViewModel.getAllProducts.observe(
+                        viewLifecycleOwner,
+                        Observer { listProducts ->
+                            listProducts.forEach {
+                                if (it.productStoreId != null) {
+                                    mStoreViewModel.updateStoreSpending(it.productStoreId, 0F)
+                                }
+                            }
+                        })
                     mProductViewModel.deleteAllProducts()
                 }
                 builderAll.create().show()
@@ -75,14 +94,18 @@ class ListFragment : Fragment() {
                 builderPurchased.setNegativeButton("Cancel") { _, _ -> }
                 builderPurchased.setPositiveButton("Delete") { _, _ ->
                     mProductViewModel.deletePurchasedProducts()
+                    mStoreViewModel.getAllStores.observe(
+                        viewLifecycleOwner,
+                        Observer { listStores ->
+                            listStores.forEach {
+                                mStoreViewModel.updateStoreSpending(it.storeId, 0F)
+                            }
+                        })
                 }
                 builderPurchased.create().show()
             }
             builder.create().show()
         }
-
-
-        return binding.root
     }
 
 }
