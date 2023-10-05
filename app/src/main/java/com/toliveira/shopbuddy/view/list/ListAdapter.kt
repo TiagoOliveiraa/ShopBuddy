@@ -9,17 +9,28 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.toliveira.shopbuddy.R
 import com.toliveira.shopbuddy.model.Product
+import com.toliveira.shopbuddy.model.Store
 import com.toliveira.shopbuddy.viewModel.ProductViewModel
 import com.toliveira.shopbuddy.viewModel.StoreViewModel
 import kotlinx.coroutines.NonDisposableHandle.parent
+import java.security.acl.Owner
 
-class ListAdapter(private val context: Context,private val mProductViewModel: ProductViewModel, private val mStoreViewModel: StoreViewModel) :
+class ListAdapter(
+    private val context: Context,
+    private val mProductViewModel: ProductViewModel,
+    private val mStoreViewModel: StoreViewModel,
+    private val lifeCycleOwner: LifecycleOwner
+) :
     RecyclerView.Adapter<com.toliveira.shopbuddy.view.list.ListAdapter.MyViewHolder>() {
+
+    private lateinit var storeList: List<Store>
 
     private var productList = emptyList<Product>()
 
@@ -33,6 +44,10 @@ class ListAdapter(private val context: Context,private val mProductViewModel: Pr
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = productList[position]
+
+        mStoreViewModel.getAllStores.observe(lifeCycleOwner, Observer { stores ->
+            storeList = stores
+        })
         holder.itemView.findViewById<TextView>(R.id.item_list).text = currentItem.productName
 
         holder.itemView.findViewById<ConstraintLayout>(R.id.prodNameConstraint)
@@ -47,16 +62,17 @@ class ListAdapter(private val context: Context,private val mProductViewModel: Pr
                 var builder = AlertDialog.Builder(context)
                 builder.setTitle("Delete Task")
                 builder.setMessage("Are you sure you want to delete this product from the list?")
-                builder.setPositiveButton("Yes"){_,_,->
-                    if(currentItem.productStoreId != null){
-                        var store = mStoreViewModel.getStore(currentItem.productStoreId)
-                        var newStoreSpending = store.storeSpending - (currentItem.productPrice * currentItem.productQuantity)
-                        mStoreViewModel.updateStoreSpending(currentItem.productStoreId,newStoreSpending)
+                builder.setPositiveButton("Yes") { _, _ ->
+                    if (currentItem.productStoreId != null) {
+                        var newStoreSpending = 0F
+                        lateinit var storeUpdate: Store
+                        updateStoreSpending(currentItem.productStoreId, currentItem)
                     }
                     mProductViewModel.deleteProduct(currentItem)
-                    Toast.makeText(context, "Product Successfully deleted!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Product Successfully deleted!", Toast.LENGTH_SHORT)
+                        .show()
                 }
-                builder.setNeutralButton("No"){_,_,->}
+                builder.setNeutralButton("No") { _, _ -> }
                 builder.create().show()
 
             }
@@ -72,5 +88,13 @@ class ListAdapter(private val context: Context,private val mProductViewModel: Pr
         notifyDataSetChanged()
     }
 
+    private fun updateStoreSpending(id: Int, product: Product) {
 
+        var currentStore = storeList.find { it.storeId == id }
+        var newSpending =
+            currentStore!!.storeSpending - (product.productPrice * product.productQuantity)
+
+        mStoreViewModel.updateStoreSpending(id,newSpending)
+
+    }
 }

@@ -53,13 +53,6 @@ class StoreViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun getStore(Id: Int) : Store{
-        lateinit var store : Store
-        viewModelScope.launch (Dispatchers.IO){
-            store = repository.getStore(Id)
-        }
-        return store
-    }
 
 
 }

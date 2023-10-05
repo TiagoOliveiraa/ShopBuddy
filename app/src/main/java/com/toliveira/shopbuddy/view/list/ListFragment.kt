@@ -14,12 +14,6 @@ import com.toliveira.shopbuddy.databinding.FragmentListBinding
 import com.toliveira.shopbuddy.model.Product
 import com.toliveira.shopbuddy.viewModel.ProductViewModel
 import com.toliveira.shopbuddy.viewModel.StoreViewModel
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
 class ListFragment : Fragment() {
 
     private lateinit var binding: FragmentListBinding
@@ -36,7 +30,7 @@ class ListFragment : Fragment() {
         mProductViewModel = ViewModelProvider(this)[ProductViewModel::class.java]
         mStoreViewModel = ViewModelProvider(this)[StoreViewModel::class.java]
 
-        val adapter = ListAdapter(requireContext(), mProductViewModel, mStoreViewModel)
+        val adapter = ListAdapter(requireContext(), mProductViewModel, mStoreViewModel,viewLifecycleOwner)
         binding.recyclerList.adapter = adapter
         binding.recyclerList.layoutManager = LinearLayoutManager(requireContext())
 

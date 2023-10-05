@@ -24,9 +24,6 @@ data class StoreRepository(private val storeDao: StoreDao){
         storeDao.updateStoreSpending(storeId,newValue)
     }
 
-    fun getStore(Id: Int) : Store{
-        return storeDao.getStore(Id)
-    }
 
 
 }
