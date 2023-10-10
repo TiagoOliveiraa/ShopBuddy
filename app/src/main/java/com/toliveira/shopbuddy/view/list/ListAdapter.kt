@@ -97,4 +97,9 @@ class ListAdapter(
         mStoreViewModel.updateStoreSpending(id,newSpending)
 
     }
+
+
+
+
+
 }

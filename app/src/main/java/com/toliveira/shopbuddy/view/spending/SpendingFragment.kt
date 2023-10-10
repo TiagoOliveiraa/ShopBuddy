@@ -47,7 +47,7 @@ class SpendingFragment : Fragment() {
             labelType = PieChart.LabelType.OUTSIDE
             startAngle = -90
             gradientType = PieChart.GradientType.SWEEP
-            holeRatio = 0f
+            holeRatio = 0.5f
         }
 
 
