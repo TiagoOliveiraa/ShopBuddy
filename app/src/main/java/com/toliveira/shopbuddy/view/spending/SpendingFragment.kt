@@ -1,5 +1,6 @@
 package com.toliveira.shopbuddy.view.spending
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Color.rgb
 import android.os.Bundle
@@ -48,6 +49,11 @@ class SpendingFragment : Fragment() {
             startAngle = -90
             gradientType = PieChart.GradientType.SWEEP
             holeRatio = 0.5f
+        }
+
+        binding.storeManagementButton.setOnClickListener {
+            var intent = Intent(this.context,StoreManagement::class.java)
+            startActivity(intent)
         }
 
 

@@ -30,6 +30,9 @@ interface ProductDao {
     @Query("DELETE FROM product_table WHERE productStoreId != null")
     fun deletePurchasedProducts()
 
+    @Query("UPDATE product_table SET productStoreID = null WHERE productStoreID = :storeId")
+    fun clearProduct(storeId: Int)
+
 
 
 

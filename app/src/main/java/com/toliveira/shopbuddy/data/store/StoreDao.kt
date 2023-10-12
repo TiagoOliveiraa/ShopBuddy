@@ -2,6 +2,7 @@ package com.toliveira.shopbuddy.data.store
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -31,6 +32,8 @@ interface StoreDao {
     @Query("UPDATE store_table SET storeSpending = :newValue WHERE storeId = :storeId")
     fun updateStoreSpending(storeId: Int, newValue: Float)
 
+    @Delete
+    fun deleteStore(store:Store)
 
     @Update
     fun updateStore(store : Store)

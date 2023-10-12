@@ -7,7 +7,8 @@
     <color name="Button_Color">#BDECB6</color>
     <color name="shopping_row_background">#EDEBE6</color>
     <color name="TextColor">#252323</color>
-    <color name="Background_Color">#F2FFF0</color>
+    <color name="Background_Color">#BBDDB6</color>
     <color name="Background_dark_color">#84a57f</color>
+    <color name="borderColor">#232320</color>
 </resources>
 

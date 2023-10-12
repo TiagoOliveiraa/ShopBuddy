@@ -24,6 +24,9 @@ data class StoreRepository(private val storeDao: StoreDao){
         storeDao.updateStoreSpending(storeId,newValue)
     }
 
+    fun deleteStore(store: Store){
+        storeDao.deleteStore(store)
+    }
 
 
 }

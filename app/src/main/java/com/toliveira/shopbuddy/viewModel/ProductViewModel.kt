@@ -52,6 +52,12 @@ class ProductViewModel (application: Application): AndroidViewModel(application)
         }
     }
 
+    fun clearProduct(id: Int){
+        viewModelScope.launch (Dispatchers.IO){
+            repository.clearProduct(id)
+        }
+    }
+
 
 
 }

@@ -53,6 +53,12 @@ class StoreViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun deleteStore(store:Store){
+        viewModelScope.launch (Dispatchers.IO){
+            repository.deleteStore(store)
+        }
+    }
+
 
 
 }
