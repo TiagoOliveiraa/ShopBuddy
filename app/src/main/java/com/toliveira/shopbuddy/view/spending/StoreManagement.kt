@@ -6,6 +6,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.toliveira.shopbuddy.databinding.ActivityStoreManagementBinding
 import com.toliveira.shopbuddy.model.Store
 import com.toliveira.shopbuddy.viewModel.ProductViewModel

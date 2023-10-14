@@ -11,16 +11,12 @@ import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.toliveira.shopbuddy.R
 import com.toliveira.shopbuddy.model.Product
 import com.toliveira.shopbuddy.model.Store
 import com.toliveira.shopbuddy.viewModel.ProductViewModel
 import com.toliveira.shopbuddy.viewModel.StoreViewModel
-import kotlinx.coroutines.NonDisposableHandle.parent
-import java.security.acl.Owner
 
 class ListAdapter(
     private val context: Context,
