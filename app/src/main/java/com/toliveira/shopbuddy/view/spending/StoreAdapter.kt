@@ -1,18 +1,17 @@
 package com.toliveira.shopbuddy.view.spending
 
-import android.app.Dialog
-import androidx.appcompat.app.AlertDialog
 import android.content.Context
 import android.content.Intent
-import android.content.res.Resources.Theme
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.toliveira.shopbuddy.MainActivity
 import com.toliveira.shopbuddy.R
 import com.toliveira.shopbuddy.model.Store
 import com.toliveira.shopbuddy.viewModel.ProductViewModel
@@ -55,7 +54,7 @@ class StoreAdapter(
 
         holder.itemView.findViewById<ConstraintLayout>(R.id.itemStoreDeleteButton)
             .setOnClickListener {
-                val builder = MaterialAlertDialogBuilder(context)
+                val builder = AlertDialog.Builder(context)
                 builder.setTitle("Delete Store")
                 builder.setMessage("Are you sure you want to delete ${currentItem.storeName}")
                 builder.setPositiveButton("Yes") { _, _ ->

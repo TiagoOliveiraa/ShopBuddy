@@ -28,7 +28,7 @@ class StoreManagement : AppCompatActivity() {
         mProductViewModel = ViewModelProvider(this)[ProductViewModel::class.java]
         mStoreViewModel = ViewModelProvider(this)[StoreViewModel::class.java]
 
-        var storeAdapter = StoreAdapter(mProductViewModel,mStoreViewModel,applicationContext)
+        var storeAdapter = StoreAdapter(mProductViewModel,mStoreViewModel,this)
         binding.StoresContainer.adapter = storeAdapter
         binding.StoresContainer.layoutManager = LinearLayoutManager(applicationContext)
 

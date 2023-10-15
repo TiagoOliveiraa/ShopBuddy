@@ -45,11 +45,6 @@ class ShoppingFragment : Fragment() {
 
 
 
-
-
-
-
-
         return binding.root
     }
 

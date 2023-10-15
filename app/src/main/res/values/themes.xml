@@ -5,5 +5,10 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
+    <style name="AlertDialogTheme" parent="Theme.Material3.DayNight.NoActionBar">
+
+    </style>
+
+
     <style name="Theme.ShopBuddy" parent="Base.Theme.ShopBuddy" />
 </resources>
