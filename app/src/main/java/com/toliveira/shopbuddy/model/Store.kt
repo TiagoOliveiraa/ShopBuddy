@@ -12,7 +12,8 @@ data class Store(
     @PrimaryKey(autoGenerate = true)
     val storeId: Int,
     val storeName: String,
-    val storeSpending: Float
+    val storeSpending: Float,
+    val storeColor: Int
 ) : Parcelable
 
 {

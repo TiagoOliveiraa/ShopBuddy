@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Adapter
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.toliveira.shopbuddy.R
@@ -29,7 +30,8 @@ class SpendingAdapter : RecyclerView.Adapter<SpendingAdapter.MyViewHolder>() {
         var currentItem = storeList[position]
 
         holder.itemView.findViewById<TextView>(R.id.item_spending_title).text = currentItem.storeName
-        holder.itemView.findViewById<TextView>(R.id.item_spending_value).text = currentItem.storeSpending.toString()
+        holder.itemView.findViewById<TextView>(R.id.item_spending_value).text = "${currentItem.storeSpending.toString()} €"
+        holder.itemView.findViewById<ImageView>(R.id.color_ball).setColorFilter(currentItem.storeColor)
     }
 
     override fun getItemCount(): Int {

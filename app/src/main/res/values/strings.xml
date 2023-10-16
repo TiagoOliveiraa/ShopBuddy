@@ -13,4 +13,6 @@
     <string name="Quantity_Title">Quantity</string>
     <string name="Spending_Title">Spending</string>
     <string name="store_management">Store Management</string>
+    <string name="empty_list_string">Start by adding some products</string>
+    <string name="product_empty_string">Add a product to use this feature</string>
 </resources>

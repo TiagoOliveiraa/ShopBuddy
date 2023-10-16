@@ -1,5 +1,6 @@
 package com.toliveira.shopbuddy.view.spending
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LifecycleOwner
@@ -38,6 +39,11 @@ class StoreManagement : AppCompatActivity() {
 
         binding.StoreBackButton.setOnClickListener {
             finish()
+        }
+
+        binding.AddStoreButton.setOnClickListener {
+            val intent = Intent(this, AddStore::class.java)
+            startActivity(intent)
         }
 
 

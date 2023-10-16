@@ -1,5 +1,6 @@
 package com.toliveira.shopbuddy.view.spending
 
+import android.graphics.Color
 import android.os.Bundle
 import android.text.TextUtils.isEmpty
 import android.widget.Toast
@@ -8,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.toliveira.shopbuddy.databinding.ActivityAddStoreBinding
 import com.toliveira.shopbuddy.model.Store
 import com.toliveira.shopbuddy.viewModel.StoreViewModel
+import java.util.Random
 
 class AddStore : AppCompatActivity() {
 
@@ -42,7 +44,7 @@ class AddStore : AppCompatActivity() {
         if (isFieldsEmpty()){
             var storeName = binding.textInputTextStore.text.toString()
 
-            var store = Store(0, storeName,0F)
+            var store = Store(0, storeName,0F,getRandomColor())
             mStoreViewModel.addStore(store)
 
 
@@ -54,6 +56,11 @@ class AddStore : AppCompatActivity() {
             Toast.makeText(this, "Please fill all fields..", Toast.LENGTH_SHORT).show()
         }
 
+    }
+
+    private fun getRandomColor(): Int {
+        var rnd = Random()
+        return Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256))
     }
 
 }

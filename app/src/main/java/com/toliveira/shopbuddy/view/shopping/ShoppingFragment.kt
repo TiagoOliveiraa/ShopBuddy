@@ -33,7 +33,9 @@ class ShoppingFragment : Fragment() {
     private var currentStore: Store? = null
     private var storeCost = 0F
     private var storeList = mutableListOf<Store>()
-    private val defaultStore = Store(-1, "Select the Store..", 0F)
+    private val defaultStore = Store(-1, "Select the Store..", 0F, 0)
+    private var isProductsEmpty = false
+    private var isStoresEmpty = false
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -54,10 +56,32 @@ class ShoppingFragment : Fragment() {
             val intent = Intent(context, AddProductActivity::class.java)
             startActivity(intent)
         }
+        mStoreViewModel.getAllStores.observe(viewLifecycleOwner, Observer { stores ->
+            isStoresEmpty = stores.isEmpty()
+        })
+        mProductViewModel.getAllProducts.observe(viewLifecycleOwner, Observer { products ->
+            isProductsEmpty = products.isEmpty()
+        })
+
+
         setSpinner()
-        getSelectedSpinner()
 
 
+        if (!isStoresEmpty && !isProductsEmpty) {
+            binding.productEmptyContainer.visibility = View.GONE
+            binding.storeEmptyContainer.visibility = View.GONE
+            binding.recyclerList.visibility = View.VISIBLE
+            getSelectedSpinner()
+        } else
+            if (!isStoresEmpty && isProductsEmpty || isStoresEmpty && isProductsEmpty) {
+                binding.productEmptyContainer.visibility = View.VISIBLE
+                binding.storeEmptyContainer.visibility = View.GONE
+                binding.recyclerList.visibility = View.GONE
+            } else {
+                binding.productEmptyContainer.visibility = View.GONE
+                binding.storeEmptyContainer.visibility = View.VISIBLE
+                binding.recyclerList.visibility = View.GONE
+            }
 
 
         binding.storeSpinner.adapter = spinnerAdapter

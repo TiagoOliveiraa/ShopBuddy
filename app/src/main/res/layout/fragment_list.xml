@@ -50,6 +50,48 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/list_item_row" />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/listEmptyContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:padding="36dp"
+            android:visibility="gone"
+            >
+
+            <ImageView
+                android:id="@+id/listEmptyImage"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintHeight_percent="0.6"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:src="@drawable/undraw_online_groceries_a02y"
+                app:layout_constraintBottom_toTopOf="@id/listEmptyText" />
+
+            <TextView
+                android:id="@+id/listEmptyText"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintHeight_percent="0.1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:text="@string/empty_list_string"
+                app:layout_constraintTop_toBottomOf="@id/listEmptyImage"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:fontFamily="@font/roboto_light"
+                android:textSize="18sp"/>
+            
+            
+            
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -77,6 +119,7 @@
         android:layout_marginBottom="12dp"
         android:layout_marginRight="12dp"
         android:src="@drawable/baseline_delete_24"
-        app:tint="@color/white" />
+        app:tint="@color/white"
+        tools:ignore="ContentDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -68,7 +68,7 @@ class SpendingFragment : Fragment() {
         storeList?.forEach { store ->
             if (store.storeSpending > 0) {
                 var percent = (store.storeSpending / totalSpent)
-                sliceList.add(PieChart.Slice(percent,getRandomColor()))
+                sliceList.add(PieChart.Slice(percent,store.storeColor))
             }
         }
 

@@ -14,6 +14,7 @@ import com.toliveira.shopbuddy.databinding.FragmentListBinding
 import com.toliveira.shopbuddy.model.Product
 import com.toliveira.shopbuddy.viewModel.ProductViewModel
 import com.toliveira.shopbuddy.viewModel.StoreViewModel
+
 class ListFragment : Fragment() {
 
     private lateinit var binding: FragmentListBinding
@@ -30,16 +31,27 @@ class ListFragment : Fragment() {
         mProductViewModel = ViewModelProvider(this)[ProductViewModel::class.java]
         mStoreViewModel = ViewModelProvider(this)[StoreViewModel::class.java]
 
-        val adapter = ListAdapter(requireContext(), mProductViewModel, mStoreViewModel,viewLifecycleOwner)
+        val adapter =
+            ListAdapter(requireContext(), mProductViewModel, mStoreViewModel, viewLifecycleOwner)
         binding.recyclerList.adapter = adapter
         binding.recyclerList.layoutManager = LinearLayoutManager(requireContext())
 
 
         mProductViewModel.getAllProducts.observe(viewLifecycleOwner, Observer { product ->
-            adapter.setData(product)
 
-            product.forEach {
-                productList.add(it)
+            if (product.isEmpty()) {
+                binding.listEmptyContainer.visibility = View.VISIBLE
+                binding.recyclerList.visibility = View.GONE
+            } else {
+
+                binding.listEmptyContainer.visibility = View.GONE
+                binding.recyclerList.visibility = View.VISIBLE
+
+                adapter.setData(product)
+
+                product.forEach {
+                    productList.add(it)
+                }
             }
         })
 

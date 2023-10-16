@@ -15,11 +15,10 @@ class UpdateStore() : AppCompatActivity() {
 
     private lateinit var binding: ActivityUpdateStoreBinding
     private lateinit var mStoreViewModel: StoreViewModel
-    private val store by lazy{
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
-            intent.getParcelableExtra("store",Store::class.java)
-        }
-        else{
+    private val store by lazy {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            intent.getParcelableExtra("store", Store::class.java)
+        } else {
             intent.getParcelableExtra("store")
         }
     }
@@ -41,7 +40,12 @@ class UpdateStore() : AppCompatActivity() {
     }
 
     private fun updateStore() {
-        var newStore = Store(store!!.storeId,binding.updateStoreText.text.toString(), store!!.storeSpending)
+        var newStore = Store(
+            store!!.storeId,
+            binding.updateStoreText.text.toString(),
+            store!!.storeSpending,
+            store!!.storeColor
+        )
         mStoreViewModel.updateStore(newStore)
         Toast.makeText(this, "Store successfully updated", Toast.LENGTH_SHORT).show()
         finish()

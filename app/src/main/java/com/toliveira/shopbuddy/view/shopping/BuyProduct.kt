@@ -84,7 +84,7 @@ class BuyProduct : AppCompatActivity() {
                 newStoreSpending = 0f
             }
 
-            var updatedStore = Store(store!!.storeId, store!!.storeName, newStoreSpending)
+            var updatedStore = Store(store!!.storeId, store!!.storeName, newStoreSpending,store!!.storeColor)
             mStoreViewModel.updateStore(updatedStore)
 
 
