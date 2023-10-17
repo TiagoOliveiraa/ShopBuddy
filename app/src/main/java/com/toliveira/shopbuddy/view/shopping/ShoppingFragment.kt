@@ -34,8 +34,6 @@ class ShoppingFragment : Fragment() {
     private var storeCost = 0F
     private var storeList = mutableListOf<Store>()
     private val defaultStore = Store(-1, "Select the Store..", 0F, 0)
-    private var isProductsEmpty = false
-    private var isStoresEmpty = false
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -56,34 +54,30 @@ class ShoppingFragment : Fragment() {
             val intent = Intent(context, AddProductActivity::class.java)
             startActivity(intent)
         }
-        mStoreViewModel.getAllStores.observe(viewLifecycleOwner, Observer { stores ->
-            isStoresEmpty = stores.isEmpty()
-        })
+
+
         mProductViewModel.getAllProducts.observe(viewLifecycleOwner, Observer { products ->
-            isProductsEmpty = products.isEmpty()
-        })
+            if (products.isNotEmpty()) {
+                mStoreViewModel.getAllStores.observe(viewLifecycleOwner, Observer { stores ->
+                    if (stores.isNotEmpty()) {
+                        binding.productEmptyContainer.visibility = View.GONE
+                        binding.storeEmptyContainer.visibility = View.GONE
+                        binding.recyclerList.visibility = View.VISIBLE
 
-
-        setSpinner()
-
-
-        if (!isStoresEmpty && !isProductsEmpty) {
-            binding.productEmptyContainer.visibility = View.GONE
-            binding.storeEmptyContainer.visibility = View.GONE
-            binding.recyclerList.visibility = View.VISIBLE
-            getSelectedSpinner()
-        } else
-            if (!isStoresEmpty && isProductsEmpty || isStoresEmpty && isProductsEmpty) {
+                    } else {
+                        binding.productEmptyContainer.visibility = View.GONE
+                        binding.storeEmptyContainer.visibility = View.VISIBLE
+                        binding.recyclerList.visibility = View.GONE
+                    }
+                })
+            } else {
                 binding.productEmptyContainer.visibility = View.VISIBLE
                 binding.storeEmptyContainer.visibility = View.GONE
                 binding.recyclerList.visibility = View.GONE
-            } else {
-                binding.productEmptyContainer.visibility = View.GONE
-                binding.storeEmptyContainer.visibility = View.VISIBLE
-                binding.recyclerList.visibility = View.GONE
             }
+        })
 
-
+        setSpinner()
         binding.storeSpinner.adapter = spinnerAdapter
 
 

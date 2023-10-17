@@ -37,9 +37,19 @@ class SpendingFragment : Fragment() {
         binding.SpendingContainer.layoutManager = LinearLayoutManager(context)
 
         mStoreViewModel.getAllStores.observe(viewLifecycleOwner, Observer { storeList ->
-            adapter.setData(storeList)
-            totalSpent = getTotalSpent(storeList)
-            makePieChart(storeList, totalSpent)
+
+            if (storeList.isNotEmpty()) {
+                adapter.setData(storeList)
+                totalSpent = getTotalSpent(storeList)
+                makePieChart(storeList, totalSpent)
+                binding.storeEmptyContainer.visibility = View.GONE
+                binding.SpendingContainer.visibility = View.VISIBLE
+                binding.ContentInsideChart.visibility = View.VISIBLE
+            }else{
+                binding.storeEmptyContainer.visibility = View.VISIBLE
+                binding.SpendingContainer.visibility = View.GONE
+                binding.ContentInsideChart.visibility = View.GONE
+            }
         })
 
 
@@ -68,7 +78,7 @@ class SpendingFragment : Fragment() {
         storeList?.forEach { store ->
             if (store.storeSpending > 0) {
                 var percent = (store.storeSpending / totalSpent)
-                sliceList.add(PieChart.Slice(percent,store.storeColor))
+                sliceList.add(PieChart.Slice(percent, store.storeColor))
             }
         }
 

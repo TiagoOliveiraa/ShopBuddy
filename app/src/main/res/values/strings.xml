@@ -14,5 +14,12 @@
     <string name="Spending_Title">Spending</string>
     <string name="store_management">Store Management</string>
     <string name="empty_list_string">Start by adding some products</string>
+    <string name="empty_store_string">Start by adding some stores</string>
     <string name="product_empty_string">Add a product to use this feature</string>
+    <string name="product_name">Product Name</string>
+    <string name="add_product">Add Product</string>
+    <string name="new_product">New Product</string>
+    <string name="add_store">Add Store</string>
+    <string name="new_store">New Store</string>
+    <string name="store_name">Store Name</string>
 </resources>

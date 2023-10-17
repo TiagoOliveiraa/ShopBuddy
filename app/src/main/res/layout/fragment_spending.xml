@@ -50,7 +50,8 @@
             android:layout_height="250dp"
             android:padding="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="visible">
 
             <ir.mahozad.android.PieChart
                 android:id="@+id/pieChart"
@@ -73,7 +74,8 @@
             app:layout_constraintEnd_toEndOf="@id/Content_inside_chart"
             app:layout_constraintStart_toStartOf="@id/Content_inside_chart"
             app:layout_constraintTop_toBottomOf="@id/Content_inside_chart"
-            tools:listitem="@layout/spending_item_row" />
+            tools:listitem="@layout/spending_item_row"
+            android:visibility="visible"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/storeManagementButton"
@@ -86,6 +88,48 @@
             android:src="@drawable/baseline_store_24"
             android:elevation="20dp"
             />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/storeEmptyContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:padding="36dp"
+            android:visibility="gone"
+            >
+
+            <ImageView
+                android:id="@+id/storeEmptyImage"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintHeight_percent="0.6"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:src="@drawable/undraw_empty_cart_co35"
+                app:layout_constraintBottom_toTopOf="@id/storeEmptyText" />
+
+            <TextView
+                android:id="@+id/storeEmptyText"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintHeight_percent="0.1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:text="@string/empty_store_string"
+                app:layout_constraintTop_toBottomOf="@id/storeEmptyImage"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:fontFamily="@font/roboto_light"
+                android:textSize="18sp"/>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 

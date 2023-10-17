@@ -26,6 +26,10 @@ class AddProductActivity : AppCompatActivity() {
             addProductToDB()
         }
 
+        binding.addProductBackButton.setOnClickListener {
+            finish()
+        }
+
 
 
 
