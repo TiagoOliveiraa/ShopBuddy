@@ -29,6 +29,10 @@ class AddStore : AppCompatActivity() {
             addStoreToDb()
         }
 
+        binding.addStoreBackButton.setOnClickListener {
+            finish()
+        }
+
 
 
 

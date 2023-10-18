@@ -3,6 +3,7 @@
     <style name="Base.Theme.ShopBuddy" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/borderColor</item>
     </style>
 
     <style name="AlertDialogTheme" parent="Theme.Material3.DayNight.NoActionBar">
