@@ -63,7 +63,7 @@ class ShoppingFragment : Fragment() {
                         binding.productEmptyContainer.visibility = View.GONE
                         binding.storeEmptyContainer.visibility = View.GONE
                         binding.recyclerList.visibility = View.VISIBLE
-
+                        getSelectedSpinner()
                     } else {
                         binding.productEmptyContainer.visibility = View.GONE
                         binding.storeEmptyContainer.visibility = View.VISIBLE
@@ -130,8 +130,6 @@ class ShoppingFragment : Fragment() {
                                     }
                                 }
                             }
-
-
                         })
                     binding.totalText.text = String.format("%.2f €", currentStore?.storeSpending)
                     binding.recyclerList.adapter = newAdapter
