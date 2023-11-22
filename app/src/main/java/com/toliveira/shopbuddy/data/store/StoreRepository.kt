@@ -3,10 +3,13 @@ package com.toliveira.shopbuddy.data.store
 import androidx.lifecycle.LiveData
 import com.toliveira.shopbuddy.model.Product
 import com.toliveira.shopbuddy.model.Store
+import kotlinx.coroutines.flow.toList
+import javax.inject.Inject
 
-data class StoreRepository(private val storeDao: StoreDao){
-    val getAllStores: LiveData<List<Store>> = storeDao.getAllStores()
+data class StoreRepository @Inject constructor(private val storeDao: StoreDao){
 
+
+    suspend fun getAllStores(): List<Store> = storeDao.getAllStores().toList().flatten()
 
     fun getStoreInfo(storeName : String) : LiveData<Store>{
        return storeDao.getStoreInfo(storeName)

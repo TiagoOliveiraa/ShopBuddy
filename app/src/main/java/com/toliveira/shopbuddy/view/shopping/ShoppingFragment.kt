@@ -20,11 +20,19 @@ import com.toliveira.shopbuddy.view.list.AddProductActivity
 import com.toliveira.shopbuddy.view.spending.AddStore
 import com.toliveira.shopbuddy.viewModel.ProductViewModel
 import com.toliveira.shopbuddy.viewModel.StoreViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @Suppress("KotlinConstantConditions")
+@AndroidEntryPoint
 class ShoppingFragment : Fragment() {
 
+    @Inject
+    private lateinit var shoppingViewModel: ShoppingViewModel
     private lateinit var binding: FragmentShoppingBinding
+
+
+
     private lateinit var mStoreViewModel: StoreViewModel
     private lateinit var mProductViewModel: ProductViewModel
     private var productFiltered = mutableListOf<Product>()
@@ -42,6 +50,9 @@ class ShoppingFragment : Fragment() {
         binding = FragmentShoppingBinding.inflate(inflater, container, false)
         mStoreViewModel = ViewModelProvider(this)[StoreViewModel::class.java]
         mProductViewModel = ViewModelProvider(this)[ProductViewModel::class.java]
+
+
+
 
 
 

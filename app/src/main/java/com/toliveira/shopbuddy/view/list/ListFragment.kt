@@ -14,7 +14,10 @@ import com.toliveira.shopbuddy.databinding.FragmentListBinding
 import com.toliveira.shopbuddy.model.Product
 import com.toliveira.shopbuddy.viewModel.ProductViewModel
 import com.toliveira.shopbuddy.viewModel.StoreViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class ListFragment : Fragment() {
 
     private lateinit var binding: FragmentListBinding

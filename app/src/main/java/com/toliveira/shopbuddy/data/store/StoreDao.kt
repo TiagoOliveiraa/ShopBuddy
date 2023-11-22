@@ -11,13 +11,14 @@ import androidx.room.Update
 import com.toliveira.shopbuddy.model.Product
 import com.toliveira.shopbuddy.model.Store
 import com.toliveira.shopbuddy.model.StoreWithProducts
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface StoreDao {
 
 
     @Query("SELECT * FROM store_table")
-    fun getAllStores() : LiveData<List<Store>>
+    fun getAllStores() : Flow<List<Store>>
 
 
     @Insert (onConflict = OnConflictStrategy.REPLACE)
