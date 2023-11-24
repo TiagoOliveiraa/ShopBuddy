@@ -13,7 +13,7 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "ShopBuddy"
-include ':app'
+include ':app', ':data', ':presentation'
 
 ext {
     activityVersion = '1.1.0'
@@ -29,3 +29,5 @@ ext {
     espressoVersion = '3.1.0'
     androidxJunitVersion = '1.1.2'
 }
+include ':data'
+include ':presentation'
