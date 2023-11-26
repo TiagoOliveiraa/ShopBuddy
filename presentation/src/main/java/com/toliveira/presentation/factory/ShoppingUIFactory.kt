@@ -1,7 +1,7 @@
-package com.toliveira.shopbuddy.view.factory
+package com.toliveira.presentation.factory
 
-import com.toliveira.shopbuddy.model.Store
-import com.toliveira.shopbuddy.view.model.ShoppingUI
+import com.toliveira.data.store.Store
+import com.toliveira.presentation.model.ShoppingUI
 import javax.inject.Inject
 
 class ShoppingUIFactory @Inject constructor() {

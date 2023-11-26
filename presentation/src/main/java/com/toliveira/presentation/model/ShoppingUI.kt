@@ -1,6 +1,6 @@
-package com.toliveira.shopbuddy.view.model
+package com.toliveira.presentation.model
 
-import com.toliveira.shopbuddy.model.Store
+import com.toliveira.data.store.Store
 
 data class ShoppingUI(
     val stores : List<Store>
