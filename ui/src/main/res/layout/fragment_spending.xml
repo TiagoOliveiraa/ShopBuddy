@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".list.ListFragment">
+
+    <ImageView
+        android:id="@+id/image_banner_spending"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/josh_appel_netpasr_bmq_unsplash"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_banner_spending"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#79FFFFFF"
+        android:fontFamily="@font/roboto_light"
+        android:padding="8dp"
+        android:text="@string/Spending_Title"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="45sp"
+        app:layout_constraintBottom_toBottomOf="@id/image_banner_spending"
+        app:layout_constraintStart_toStartOf="@id/image_banner_spending"
+        app:layout_constraintTop_toTopOf="@id/image_banner_spending" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/content_container_spending"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/app_background"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_banner_spending">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/Content_inside_chart"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:padding="8dp"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ir.mahozad.android.PieChart
+                android:id="@+id/pieChart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:labelsColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@id/Content_inside_chart"
+                app:layout_constraintEnd_toEndOf="@id/Content_inside_chart"
+                app:layout_constraintStart_toStartOf="@id/Content_inside_chart"
+                app:layout_constraintTop_toTopOf="@id/Content_inside_chart"
+                tools:ignore="MissingConstraints" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/Spending_Container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/Content_inside_chart"
+            app:layout_constraintStart_toStartOf="@id/Content_inside_chart"
+            app:layout_constraintTop_toBottomOf="@id/Content_inside_chart"
+            tools:listitem="@layout/spending_item_row" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/storeManagementButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:backgroundTint="@color/Button_Color"
+            android:elevation="20dp"
+            android:src="@drawable/baseline_store_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/white" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/storeEmptyContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="36dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/storeEmptyImage"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/undraw_empty_cart_co35"
+                app:layout_constraintBottom_toTopOf="@id/storeEmptyText"
+                app:layout_constraintHeight_percent="0.6"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/storeEmptyText"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:fontFamily="@font/roboto_light"
+                android:gravity="center"
+                android:text="@string/empty_store_string"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHeight_percent="0.1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/storeEmptyImage" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

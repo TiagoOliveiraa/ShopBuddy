@@ -4,14 +4,14 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.toliveira.data.store.Store
-import com.toliveira.data.store.StoreDao
+import com.toliveira.data.store.model.StoreDTO
+import com.toliveira.model.store.StoreDao
 
 
-@Database(entities = [Store::class],version = 1, exportSchema = false)
+@Database(entities = [StoreDTO::class],version = 1, exportSchema = false)
 abstract class ShopDatabase : RoomDatabase(){
 
-    abstract fun storeDao(): StoreDao
+    abstract fun storeDao(): com.toliveira.model.store.StoreDao
 
     companion object{
         @Volatile
