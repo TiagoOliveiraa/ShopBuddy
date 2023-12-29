@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".list.ListFragment">
+    tools:context=".list.fragment.ListFragment">
 
     <ImageView
         android:id="@+id/shoppingTopImage"

@@ -1,16 +1,16 @@
 package com.toliveira.domain.useCases.product
 
 import com.toliveira.data.product.repository.ProductRepository
-import com.toliveira.domain.model.Product
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.coroutineScope
+import com.toliveira.domain.model.product.Product
+import com.toliveira.domain.model.product.mapper.toData
+import com.toliveira.domain.model.product.mapper.toDomain
 import javax.inject.Inject
 
 class GetProductsUseCase @Inject constructor(
     private val productRepository: ProductRepository
 ) {
-    suspend operator fun invoke(): List<Product> = productRepository.getAllProducts()
+    suspend operator fun invoke(): List<Product> =
+        productRepository.getAllProducts().map { it.toDomain() }.toList()
 }
 
 class AddProductUseCase @Inject constructor(
@@ -18,7 +18,7 @@ class AddProductUseCase @Inject constructor(
 ) {
 
     operator fun invoke(product: Product) {
-        productRepository.addProduct(product)
+        productRepository.addProduct(product.toData())
     }
 
 }
@@ -28,7 +28,7 @@ class UpdateProductUseCase @Inject constructor(
 ) {
 
     operator fun invoke(product: Product) {
-        productRepository.updateProduct(product)
+        productRepository.updateProduct(product.toData())
     }
 
 }
@@ -38,7 +38,7 @@ class DeleteProductUseCase @Inject constructor(
 ) {
 
     operator fun invoke(product: Product) {
-        productRepository.deleteProduct(product)
+        productRepository.deleteProduct(product.toData())
     }
 
 }
@@ -65,16 +65,16 @@ class DeletePurchasedProductsUseCase @Inject constructor(
 
 class ClearProductUseCase @Inject constructor(
     private val productRepository: ProductRepository
-){
-    operator fun invoke(id: Int){
+) {
+    operator fun invoke(id: Int) {
         productRepository.clearProduct(id)
     }
 }
 
 class GetProductUseCase @Inject constructor(
     private val productRepository: ProductRepository
-){
-    operator fun invoke(id: Int){
+) {
+    operator fun invoke(id: Int) {
         productRepository.getProduct(id)
     }
 }

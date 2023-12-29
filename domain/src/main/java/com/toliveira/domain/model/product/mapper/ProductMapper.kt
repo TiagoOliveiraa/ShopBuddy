@@ -1,7 +1,7 @@
-package com.toliveira.data.product.mapper
+package com.toliveira.domain.model.product.mapper
 
 import com.toliveira.data.product.model.ProductDTO
-import com.toliveira.domain.model.Product
+import com.toliveira.domain.model.product.Product
 
 internal fun ProductDTO.toDomain() : Product{
 

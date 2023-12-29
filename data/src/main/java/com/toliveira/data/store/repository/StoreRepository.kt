@@ -1,40 +1,36 @@
 package com.toliveira.data.store.repository
 
 
-import androidx.lifecycle.LiveData
-import com.toliveira.data.store.mapper.toData
-import com.toliveira.data.store.mapper.toDomain
 import com.toliveira.data.store.model.StoreDTO
-import com.toliveira.domain.model.Store
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.toList
 import javax.inject.Inject
 
 class StoreRepository @Inject constructor(private val storeDao: StoreDao) {
 
-    suspend fun getAllStores(): List<Store> =
+    suspend fun getAllStores(): List<StoreDTO> =
         storeDao.getAllStores().map { it ->
-            it.map { it.toDomain() }
+            it.map { it }
         }.toList().flatten()
 
-    fun getStoreInfo(storeName: String): Store {
-        return storeDao.getStoreInfo(storeName).toDomain()
+    fun getStoreInfo(storeName: String): StoreDTO {
+        return storeDao.getStoreInfo(storeName)
     }
 
-    fun updateStore(store: Store) {
-        storeDao.updateStore(store.toData())
+    fun updateStore(store: StoreDTO) {
+        storeDao.updateStore(store)
     }
 
-    fun addStore(store: Store) {
-        storeDao.addStore(store.toData())
+    fun addStore(store: StoreDTO) {
+        storeDao.addStore(store)
     }
 
     fun updateStoreSpending(storeId: Int, newValue: Float) {
         storeDao.updateStoreSpending(storeId, newValue)
     }
 
-    fun deleteStore(store: Store) {
-        storeDao.deleteStore(store.toData())
+    fun deleteStore(store: StoreDTO) {
+        storeDao.deleteStore(store)
     }
 
 

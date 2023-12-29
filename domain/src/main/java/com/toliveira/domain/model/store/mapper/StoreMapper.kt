@@ -1,7 +1,7 @@
-package com.toliveira.data.store.mapper
+package com.toliveira.domain.model.store.mapper
 
 import com.toliveira.data.store.model.StoreDTO
-import com.toliveira.domain.model.Store
+import com.toliveira.domain.model.store.Store
 
 internal fun StoreDTO.toDomain(): Store {
 

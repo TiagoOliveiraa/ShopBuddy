@@ -1,4 +1,4 @@
-package com.toliveira.domain.model
+package com.toliveira.domain.model.store
 
 data class Store(
     val storeId: Int,

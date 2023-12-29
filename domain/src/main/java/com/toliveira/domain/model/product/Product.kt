@@ -1,4 +1,4 @@
-package com.toliveira.domain.model
+package com.toliveira.domain.model.product
 
 data class Product(
     val productId: Int,

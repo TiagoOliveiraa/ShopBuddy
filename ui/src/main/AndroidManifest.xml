@@ -12,24 +12,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ShopBuddy"
         tools:targetApi="31">
-        <activity
-            android:name=".spending.UpdateStore"
-            android:exported="false" />
-        <activity
-            android:name=".spending.StoreManagement"
-            android:exported="false" />
-        <activity
-            android:name=".shopping.BuyProduct"
-            android:exported="false" />
-        <activity
-            android:name=".list.ProductUpdateActivity"
-            android:exported="false" />
-        <activity
-            android:name=".list.AddProductActivity"
-            android:exported="false" />
-        <activity
-            android:name=".spending.AddStore"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".spending.UpdateStore"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".spending.StoreManagement"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".shopping.BuyProduct"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".list.ProductUpdateActivity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".list.AddProductActivity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".spending.AddStore"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".MainActivity"
             android:exported="true">
