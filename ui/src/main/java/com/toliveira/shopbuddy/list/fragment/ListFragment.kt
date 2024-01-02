@@ -6,22 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.toliveira.shopbuddy.databinding.FragmentListBinding
-//import com.toliveira.shopbuddy.list.AddProductActivity
+import com.toliveira.shopbuddy.list.AddProductActivity
 import com.toliveira.shopbuddy.list.adapter.ListAdapter
 import com.toliveira.shopbuddy.list.viewModel.ListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 
 @AndroidEntryPoint
 class ListFragment : Fragment() {
 
-    @Inject
-    lateinit var listViewModel: ListViewModel
+    private val listViewModel: ListViewModel by viewModels()
     private var adapter = ListAdapter()
     private lateinit var binding: FragmentListBinding
 
@@ -46,11 +45,10 @@ class ListFragment : Fragment() {
 //        mStoreViewModel = ViewModelProvider(this)[StoreViewModel::class.java]
 
 
-//        binding.listButton.setOnClickListener {
-//            var intent = Intent(context, AddProductActivity::class.java)
-//            startActivity(intent)
-//        }
-
+        binding.listButton.setOnClickListener {
+            var intent = Intent(context, AddProductActivity::class.java)
+            startActivity(intent)
+        }
 
 
 //        setDeleteButton()

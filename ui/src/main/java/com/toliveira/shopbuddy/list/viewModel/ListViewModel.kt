@@ -2,6 +2,7 @@ package com.toliveira.shopbuddy.list.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.toliveira.domain.useCases.product.AddProductUseCase
 import com.toliveira.domain.useCases.product.GetProductsUseCase
 import com.toliveira.shopbuddy.list.factory.ListUIFactory
 import com.toliveira.shopbuddy.list.model.ListUI
@@ -17,6 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ListViewModel @Inject constructor(
     private val getProductsUseCase: GetProductsUseCase,
+    private val addProductUseCase: AddProductUseCase,
     private val listUIFactory: ListUIFactory
 ) : ViewModel() {
 
@@ -28,6 +30,17 @@ class ListViewModel @Inject constructor(
             val products = listUIFactory(getProductsUseCase.invoke().map {it -> it.toUI() }.toList())
             _getAllProducts.emit(products)
         }
+    }
+
+
+    private fun _addNewProduct(name: String){
+        viewModelScope.launch {
+            addProductUseCase(name)
+        }
+    }
+
+    fun addNewProduct(name: String){
+        _addNewProduct(name)
     }
 
 

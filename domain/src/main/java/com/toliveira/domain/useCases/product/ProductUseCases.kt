@@ -17,7 +17,8 @@ class AddProductUseCase @Inject constructor(
     private val productRepository: ProductRepository
 ) {
 
-    operator fun invoke(product: Product) {
+    operator fun invoke(name: String) {
+        val product = Product(0, name, 0, 0F, null)
         productRepository.addProduct(product.toData())
     }
 

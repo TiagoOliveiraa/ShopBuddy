@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".Application"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -24,9 +25,9 @@
 <!--        <activity-->
 <!--            android:name=".list.ProductUpdateActivity"-->
 <!--            android:exported="false" />-->
-<!--        <activity-->
-<!--            android:name=".list.AddProductActivity"-->
-<!--            android:exported="false" />-->
+        <activity
+            android:name=".list.AddProductActivity"
+            android:exported="false" />
 <!--        <activity-->
 <!--            android:name=".spending.AddStore"-->
 <!--            android:exported="false" />-->

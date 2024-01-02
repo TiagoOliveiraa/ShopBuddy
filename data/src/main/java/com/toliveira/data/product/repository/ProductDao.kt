@@ -8,8 +8,10 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.toliveira.data.product.model.ProductDTO
+import dagger.Binds
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
+
 
 @Dao
 interface ProductDao {
