@@ -17,7 +17,7 @@ import javax.inject.Inject
 interface ProductDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addProduct(productDTO: ProductDTO)
+    suspend fun addProduct(productDTO: ProductDTO)
 
     @Query("SELECT * FROM product_table")
     fun getAllProducts() : Flow<List<ProductDTO>>

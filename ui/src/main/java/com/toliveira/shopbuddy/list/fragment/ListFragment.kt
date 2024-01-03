@@ -39,6 +39,7 @@ class ListFragment : Fragment() {
             }
         }
         binding.recyclerList.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerList.adapter = adapter
 
 
 //        mProductViewModel = ViewModelProvider(this)[ProductViewModel::class.java]

@@ -65,7 +65,6 @@ class ListAdapter(
 
     fun setData(products: ListUI) {
         this.productList = products.productsList
-        notifyDataSetChanged()
     }
 
 //    private fun updateStoreSpending(id: Int, product: com.toliveira.data.product.Product) {

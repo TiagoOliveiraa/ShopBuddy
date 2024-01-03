@@ -14,7 +14,7 @@ data class ProductRepository @Inject constructor(
             .toList().flatten()
     }
 
-    fun addProduct(product: ProductDTO) {
+    suspend fun addProduct(product: ProductDTO) {
         productDao.addProduct(product)
     }
 
